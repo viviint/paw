@@ -3,526 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="assets/stylewebsi.css" rel="stylesheet" />
     <title>Sistem Informasi - Telkom University</title>
-    <style>
-      :root {
-        --primary-color: #4b0082;
-        --secondary-color: #8b008b;
-        --text-light: #ffffff;
-        --text-dark: #333333;
-        --container-width: 1200px;
-      }
-
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: Arial, sans-serif;
-      }
-
-      .container {
-        max-width: var(--container-width);
-        margin: 0 auto;
-        padding: 0 15px;
-      }
-
-      /* Navbar Styles */
-      .navbar {
-        background-color: var(--primary-color);
-        padding: 1rem 0;
-        position: fixed;
-        width: 100%;
-        top: 0;
-        z-index: 1000;
-      }
-
-      .navbar .container {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-
-      .logo img {
-        height: 40px;
-      }
-
-      .nav-links {
-        display: flex;
-        gap: 2rem;
-      }
-
-      .nav-links a {
-        color: var(--text-light);
-        text-decoration: none;
-        font-weight: 500;
-        font-size: 14px;
-      }
-
-      .daftar-btn {
-        background-color: transparent;
-        border: 2px solid var(--text-light);
-        color: var(--text-light);
-        padding: 0.5rem 1.5rem;
-        border-radius: 25px;
-        cursor: pointer;
-        font-size: 14px;
-        transition: all 0.3s;
-      }
-
-      .daftar-btn:hover {
-        background-color: #fff;
-        color: var(--primary-color);
-      }
-
-      /* Hero Section */
-      .hero {
-        background: linear-gradient(
-            rgba(75, 0, 130, 0.9),
-            rgba(75, 0, 130, 0.9)
-          ),
-          url("https://bis-sby.telkomuniversity.ac.id/wp-content/uploads/2024/04/Frame-12.png");
-        height: 400px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        color: var(--text-light);
-        margin-top: 70px;
-      }
-
-      .hero .container {
-        max-width: 800px;
-      }
-
-      .hero h1 {
-        font-size: 2.5rem;
-        margin-bottom: 1rem;
-        line-height: 1.3;
-      }
-
-      .article-meta {
-        font-size: 14px;
-        text-transform: uppercase;
-      }
-
-      /* Main Content Layout */
-      .main-content {
-        padding: 3rem 0;
-      }
-
-      .content-wrapper {
-        display: grid;
-        grid-template-columns: 2fr 1fr;
-        gap: 2rem;
-      }
-
-      /* Article Content */
-      .article-content {
-        background: #fff;
-      }
-
-      .article-image {
-        width: 100%;
-        margin-bottom: 2rem;
-      }
-
-      .article-text {
-        line-height: 1.6;
-      }
-
-      .article-text p a {
-        color: #000;
-      }
-
-      /* Sidebar */
-      .sidebar {
-        background: #f5f5f5;
-        border-radius: 8px;
-        padding: 1.5rem;
-      }
-
-      .sidebar-widget {
-        margin-bottom: 2rem;
-      }
-
-      .sidebar-widget h3 {
-        margin-bottom: 1rem;
-        font-size: 18px;
-        color: var(--primary-color);
-      }
-
-      .sidebar-widget ul {
-        list-style: none;
-        padding: 0;
-      }
-
-      .sidebar-widget ul li {
-        margin-bottom: 0.5rem;
-        font-size: 14px;
-        color: #666;
-      }
-
-      .search-box {
-        width: 100%;
-        padding: 0.8rem;
-        border: 1px solid #ddd;
-        border-radius: 4px;
-        margin-bottom: 1rem;
-      }
-
-      /* Related Articles */
-      .related-articles {
-        margin-top: 3rem;
-      }
-
-      .articles-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 1.5rem;
-      }
-
-      .article-card {
-        background: #fff;
-        border-radius: 8px;
-        overflow: hidden;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      }
-
-      .article-card img {
-        width: 100%;
-        height: 200px;
-        object-fit: cover;
-      }
-
-      .article-card-content {
-        padding: 1rem;
-      }
-
-      .article-card h3 {
-        font-size: 16px;
-        margin-bottom: 0.5rem;
-      }
-
-      .article-date {
-        font-size: 14px;
-        color: #666;
-      }
-
-      /* Tags Widget Styles */
-      .tags-widget h3 {
-        color: #2f3b4b;
-        font-size: 18px;
-        margin-bottom: 15px;
-        font-weight: 600;
-      }
-
-      .tags-cloud {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px;
-      }
-
-      .tags-cloud a {
-        text-decoration: none;
-        color: #4a5568;
-        font-size: 13px;
-        transition: all 0.3s ease;
-      }
-
-      .tags-cloud a:hover {
-        color: #1a365d;
-      }
-
-      /* Tag sizes */
-      .tag-size-1 {
-        font-size: 12px;
-      }
-      .tag-size-2 {
-        font-size: 14px;
-      }
-      .tag-size-3 {
-        font-size: 16px;
-      }
-      .tag-size-4 {
-        font-size: 18px;
-      }
-      .tag-size-5 {
-        font-size: 20px;
-      }
-
-      /* Tag colors */
-      .tag-color-1 {
-        color: #4a5568;
-      }
-      .tag-color-2 {
-        color: #2d3748;
-      }
-      .tag-color-3 {
-        color: #1a365d;
-      }
-
-      /* Tags */
-      .tags {
-        margin: 2rem 0;
-      }
-
-      .tag {
-        display: inline-block;
-        padding: 0.3rem 0.8rem;
-        margin: 0.2rem;
-        background: #eee;
-        border-radius: 15px;
-        font-size: 12px;
-        color: #666;
-        text-decoration: none;
-      }
-
-      /* Footer */
-      footer {
-        background-color: #1a1a1a;
-        color: var(--text-light);
-        padding: 3rem 0;
-      }
-
-      .footer-content {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 2rem;
-      }
-
-      .footer-section h3 {
-        color: #fff;
-        margin-bottom: 1rem;
-        font-size: 18px;
-      }
-
-      .footer-section ul {
-        list-style: none;
-        padding: 0;
-      }
-
-      .footer-section ul li a {
-        margin-bottom: 0.5rem;
-        font-size: 14px;
-        color: #cecece;
-        text-decoration: none;
-      }
-
-      .social-links {
-        display: flex;
-        gap: 1rem;
-        margin-top: 1rem;
-      }
-
-      .social-links a {
-        width: 40px;
-        height: 40px;
-        background: #333;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        color: var(--text-light);
-        text-decoration: none;
-      }
-
-      .copyright {
-        text-align: center;
-        padding-top: 2rem;
-        margin-top: 2rem;
-        border-top: 1px solid #333;
-      }
-
-      /* Responsive Design */
-      @media (max-width: 768px) {
-        .content-wrapper {
-          grid-template-columns: 1fr;
-        }
-
-        .articles-grid {
-          grid-template-columns: 1fr;
-        }
-
-        .tags-widget {
-          padding: 15px;
-        }
-
-        .tags-cloud {
-          gap: 6px;
-        }
-
-        .tags-cloud a {
-          font-size: 12px;
-        }
-
-        .footer-content {
-          grid-template-columns: 1fr;
-        }
-      }
-
-      /* Tablet Styles (768px - 1024px) */
-      @media (max-width: 1024px) {
-        .container {
-          padding: 0 20px;
-        }
-
-        .hero h1 {
-          font-size: 2rem;
-        }
-
-        .content-wrapper {
-          grid-template-columns: 3fr 2fr;
-          gap: 1.5rem;
-        }
-
-        .articles-grid {
-          grid-template-columns: repeat(2, 1fr);
-        }
-
-        .nav-links {
-          gap: 1rem;
-        }
-
-        .nav-links a {
-          font-size: 13px;
-        }
-
-        .daftar-btn {
-          padding: 0.4rem 1.2rem;
-          font-size: 13px;
-        }
-      }
-
-      /* Mobile Navigation Styles */
-      .mobile-menu-btn {
-        display: none;
-        background: none;
-        border: none;
-        color: white;
-        font-size: 24px;
-        cursor: pointer;
-        padding: 5px;
-      }
-
-      /* Mobile Styles (< 768px) */
-      @media (max-width: 767px) {
-        /* Navigation */
-        .mobile-menu-btn {
-          display: block;
-        }
-
-        .nav-links {
-          display: none;
-          position: absolute;
-          top: 70px;
-          left: 0;
-          right: 0;
-          background: var(--primary-color);
-          flex-direction: column;
-          padding: 1rem 0;
-          text-align: center;
-        }
-
-        .nav-links.active {
-          display: flex;
-        }
-
-        .nav-links a {
-          padding: 0.8rem 0;
-          width: 100%;
-          border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-        }
-
-        .daftar-btn {
-          display: none;
-        }
-
-        /* Hero Section */
-        .hero {
-          height: 300px;
-          padding: 0 20px;
-        }
-
-        .hero h1 {
-          font-size: 1.5rem;
-        }
-
-        .article-meta {
-          font-size: 12px;
-        }
-
-        /* Main Content */
-        .content-wrapper {
-          grid-template-columns: 1fr;
-        }
-
-        .article-content {
-          padding: 15px;
-        }
-
-        .article-image {
-          margin: -15px -15px 15px -15px;
-          width: calc(100% + 30px);
-        }
-
-        /* Sidebar */
-        .sidebar {
-          margin-top: 2rem;
-        }
-
-        /* Related Articles */
-        .articles-grid {
-          grid-template-columns: 1fr;
-        }
-
-        .article-card {
-          margin-bottom: 1rem;
-        }
-
-        /* Footer */
-        .footer-content {
-          grid-template-columns: 1fr;
-          gap: 2rem;
-          text-align: center;
-        }
-
-        .social-links {
-          justify-content: center;
-        }
-
-        .footer-section ul {
-          text-align: center;
-        }
-      }
-
-      /* Small Mobile Styles (< 480px) */
-      @media (max-width: 480px) {
-        .container {
-          padding: 0 15px;
-        }
-
-        .hero {
-          height: 250px;
-        }
-
-        .hero h1 {
-          font-size: 1.2rem;
-        }
-
-        .article-card img {
-          height: 160px;
-        }
-
-        .sidebar-widget h3 {
-          font-size: 16px;
-        }
-
-        .tag {
-          font-size: 11px;
-          padding: 0.2rem 0.6rem;
-        }
-      }
-    </style>
   </head>
   <body>
     <nav class="navbar">
@@ -660,7 +142,11 @@
 
             <br />
             <br />
-            <h5>Jumlah Pengunjung : 1.037</h5>
+            <h5 style="font-size: 15px; font-weight: lighter">
+              Jumlah Pengunjung : 1,073
+            </h5>
+
+            <h5 style="font-size: 15px; margin-top: 3rem">Tags</h5>
 
             <div class="tags">
               <a href="#" class="tag"># Integritas</a>
@@ -800,7 +286,6 @@
             </div>
           </aside>
         </div>
-
         <section class="related-articles">
           <h2>Artikel Terkait</h2>
           <div class="articles-grid">
@@ -810,28 +295,37 @@
                 alt="Article 1"
               />
               <div class="article-card-content">
-                <h3>Perbedaan Sistem Informasi dan Informatika</h3>
+                <h3>
+                  Perbedaan Sistem Informasi dan Informatika, Memahami Dua
+                  Cabang Ilmu Teknologi dalam Pengenmbangan dan Implementasinya
+                </h3>
                 <div class="article-date">October 6, 2024</div>
               </div>
             </div>
             <div class="article-card">
               <img
-                src="https://bis-sby.telkomuniversity.ac.id/wp-content/uploads/2024/10/pexels-fauxels-3183150-1-300x200.jpg"
-                alt="Article 1"
+                src="https://bis-sby.telkomuniversity.ac.id/wp-content/uploads/2024/09/JS-768x432.jpg"
+                alt="Article 2"
               />
               <div class="article-card-content">
-                <h3>Perbedaan Sistem Informasi dan Informatika</h3>
-                <div class="article-date">October 6, 2024</div>
+                <h3>
+                  JavaScript, Keunggulan Bahasa Pemrograman Yang Masih Ramai
+                  Hingga Saat Ini
+                </h3>
+                <div class="article-date">September 27, 2024</div>
               </div>
             </div>
             <div class="article-card">
               <img
-                src="https://bis-sby.telkomuniversity.ac.id/wp-content/uploads/2024/10/pexels-fauxels-3183150-1-300x200.jpg"
-                alt="Article 1"
+                src="https://bis-sby.telkomuniversity.ac.id/wp-content/uploads/2024/08/XAI-768x432.jpg"
+                alt="Article 3"
               />
               <div class="article-card-content">
-                <h3>Perbedaan Sistem Informasi dan Informatika</h3>
-                <div class="article-date">October 6, 2024</div>
+                <h3>
+                  Explainable AI: Pengertian, Cara Kerja, Pentingnya, dan
+                  Penerapannya
+                </h3>
+                <div class="article-date">August 29, 2024</div>
               </div>
             </div>
           </div>
@@ -847,9 +341,10 @@
               src="https://bis-sby.telkomuniversity.ac.id/wp-content/uploads/2024/03/LogoGabunganFooter-300x39.png"
               alt="Footer Logo"
             />
-            <p>
+            <p style="color: #cecece; font-size: 15px; margin-top: 1rem">
               Program Studi Sistem Informasi sudah ada sejak berdirinya
-              Universitas Telkom Surabaya...
+              Universitas Telkom Surabaya, berdasarkan Keputusan Menteri Riset,
+              Teknologi, dan Pendidikan Tinggi no.733 /KPT/ I /2018
             </p>
           </div>
           <div class="footer-section">
@@ -863,8 +358,8 @@
           </div>
           <div class="footer-section">
             <h3>Info Kontak</h3>
-            <p>Telepon: +62 31 8280800</p>
-            <p>Email: is@ttelkom-sby.ac.id</p>
+            <p style="color: #cecece">Telepon: +62 31 8280800</p>
+            <p style="color: #cecece">Email: is@ttelkom-sby.ac.id</p>
             <div class="social-links">
               <a href="#"><i class="fab fa-instagram"></i></a>
               <a href="#"><i class="fab fa-facebook"></i></a>
