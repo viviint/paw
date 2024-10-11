@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sistem Informasi - Telkom University</title>
+    <style>
+      :root {
+        --primary-color: #4b0082;
+        --secondary-color: #8b008b;
+        --text-light: #ffffff;
+        --text-dark: #333333;
+        --container-width: 1200px;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+      }
+
+      .container {
+        max-width: var(--container-width);
+        margin: 0 auto;
+        padding: 0 15px;
+      }
+
+      /* Navbar Styles */
+      .navbar {
+        background-color: var(--primary-color);
+        padding: 1rem 0;
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+      }
+
+      .navbar .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo img {
+        height: 40px;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 2rem;
+      }
+
+      .nav-links a {
+        color: var(--text-light);
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 14px;
+      }
+
+      .daftar-btn {
+        background-color: transparent;
+        border: 2px solid var(--text-light);
+        color: var(--text-light);
+        padding: 0.5rem 1.5rem;
+        border-radius: 25px;
+        cursor: pointer;
+        font-size: 14px;
+        transition: all 0.3s;
+      }
+
+      .daftar-btn:hover {
+        background-color: #fff;
+        color: var(--primary-color);
+      }
+
+      /* Hero Section */
+      .hero {
+        background: linear-gradient(
+            rgba(75, 0, 130, 0.9),
+            rgba(75, 0, 130, 0.9)
+          ),
+          url("https://bis-sby.telkomuniversity.ac.id/wp-content/uploads/2024/04/Frame-12.png");
+        height: 400px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        color: var(--text-light);
+        margin-top: 70px;
+      }
+
+      .hero .container {
+        max-width: 800px;
+      }
+
+      .hero h1 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        line-height: 1.3;
+      }
+
+      .article-meta {
+        font-size: 14px;
+        text-transform: uppercase;
+      }
+
+      /* Main Content Layout */
+      .main-content {
+        padding: 3rem 0;
+      }
+
+      .content-wrapper {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 2rem;
+      }
+
+      /* Article Content */
+      .article-content {
+        background: #fff;
+      }
+
+      .article-image {
+        width: 100%;
+        margin-bottom: 2rem;
+      }
+
+      .article-text {
+        line-height: 1.6;
+      }
+
+      .article-text p a {
+        color: #000;
+      }
+
+      /* Sidebar */
+      .sidebar {
+        background: #f5f5f5;
+        border-radius: 8px;
+        padding: 1.5rem;
+      }
+
+      .sidebar-widget {
+        margin-bottom: 2rem;
+      }
+
+      .sidebar-widget h3 {
+        margin-bottom: 1rem;
+        font-size: 18px;
+        color: var(--primary-color);
+      }
+
+      .sidebar-widget ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      .sidebar-widget ul li {
+        margin-bottom: 0.5rem;
+        font-size: 14px;
+        color: #666;
+      }
+
+      .search-box {
+        width: 100%;
+        padding: 0.8rem;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        margin-bottom: 1rem;
+      }
+
+      /* Related Articles */
+      .related-articles {
+        margin-top: 3rem;
+      }
+
+      .articles-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+      }
+
+      .article-card {
+        background: #fff;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      .article-card img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+      }
+
+      .article-card-content {
+        padding: 1rem;
+      }
+
+      .article-card h3 {
+        font-size: 16px;
+        margin-bottom: 0.5rem;
+      }
+
+      .article-date {
+        font-size: 14px;
+        color: #666;
+      }
+
+      /* Tags Widget Styles */
+      .tags-widget h3 {
+        color: #2f3b4b;
+        font-size: 18px;
+        margin-bottom: 15px;
+        font-weight: 600;
+      }
+
+      .tags-cloud {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .tags-cloud a {
+        text-decoration: none;
+        color: #4a5568;
+        font-size: 13px;
+        transition: all 0.3s ease;
+      }
+
+      .tags-cloud a:hover {
+        color: #1a365d;
+      }
+
+      /* Tag sizes */
+      .tag-size-1 {
+        font-size: 12px;
+      }
+      .tag-size-2 {
+        font-size: 14px;
+      }
+      .tag-size-3 {
+        font-size: 16px;
+      }
+      .tag-size-4 {
+        font-size: 18px;
+      }
+      .tag-size-5 {
+        font-size: 20px;
+      }
+
+      /* Tag colors */
+      .tag-color-1 {
+        color: #4a5568;
+      }
+      .tag-color-2 {
+        color: #2d3748;
+      }
+      .tag-color-3 {
+        color: #1a365d;
+      }
+
+      /* Tags */
+      .tags {
+        margin: 2rem 0;
+      }
+
+      .tag {
+        display: inline-block;
+        padding: 0.3rem 0.8rem;
+        margin: 0.2rem;
+        background: #eee;
+        border-radius: 15px;
+        font-size: 12px;
+        color: #666;
+        text-decoration: none;
+      }
+
+      /* Footer */
+      footer {
+        background-color: #1a1a1a;
+        color: var(--text-light);
+        padding: 3rem 0;
+      }
+
+      .footer-content {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+      }
+
+      .footer-section h3 {
+        color: #fff;
+        margin-bottom: 1rem;
+        font-size: 18px;
+      }
+
+      .footer-section ul {
+        list-style: none;
+        padding: 0;
+      }
+
+      .footer-section ul li a {
+        margin-bottom: 0.5rem;
+        font-size: 14px;
+        color: #cecece;
+        text-decoration: none;
+      }
+
+      .social-links {
+        display: flex;
+        gap: 1rem;
+        margin-top: 1rem;
+      }
+
+      .social-links a {
+        width: 40px;
+        height: 40px;
+        background: #333;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--text-light);
+        text-decoration: none;
+      }
+
+      .copyright {
+        text-align: center;
+        padding-top: 2rem;
+        margin-top: 2rem;
+        border-top: 1px solid #333;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .content-wrapper {
+          grid-template-columns: 1fr;
+        }
+
+        .articles-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .tags-widget {
+          padding: 15px;
+        }
+
+        .tags-cloud {
+          gap: 6px;
+        }
+
+        .tags-cloud a {
+          font-size: 12px;
+        }
+
+        .footer-content {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      /* Tablet Styles (768px - 1024px) */
+      @media (max-width: 1024px) {
+        .container {
+          padding: 0 20px;
+        }
+
+        .hero h1 {
+          font-size: 2rem;
+        }
+
+        .content-wrapper {
+          grid-template-columns: 3fr 2fr;
+          gap: 1.5rem;
+        }
+
+        .articles-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .nav-links {
+          gap: 1rem;
+        }
+
+        .nav-links a {
+          font-size: 13px;
+        }
+
+        .daftar-btn {
+          padding: 0.4rem 1.2rem;
+          font-size: 13px;
+        }
+      }
+
+      /* Mobile Navigation Styles */
+      .mobile-menu-btn {
+        display: none;
+        background: none;
+        border: none;
+        color: white;
+        font-size: 24px;
+        cursor: pointer;
+        padding: 5px;
+      }
+
+      /* Mobile Styles (< 768px) */
+      @media (max-width: 767px) {
+        /* Navigation */
+        .mobile-menu-btn {
+          display: block;
+        }
+
+        .nav-links {
+          display: none;
+          position: absolute;
+          top: 70px;
+          left: 0;
+          right: 0;
+          background: var(--primary-color);
+          flex-direction: column;
+          padding: 1rem 0;
+          text-align: center;
+        }
+
+        .nav-links.active {
+          display: flex;
+        }
+
+        .nav-links a {
+          padding: 0.8rem 0;
+          width: 100%;
+          border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .daftar-btn {
+          display: none;
+        }
+
+        /* Hero Section */
+        .hero {
+          height: 300px;
+          padding: 0 20px;
+        }
+
+        .hero h1 {
+          font-size: 1.5rem;
+        }
+
+        .article-meta {
+          font-size: 12px;
+        }
+
+        /* Main Content */
+        .content-wrapper {
+          grid-template-columns: 1fr;
+        }
+
+        .article-content {
+          padding: 15px;
+        }
+
+        .article-image {
+          margin: -15px -15px 15px -15px;
+          width: calc(100% + 30px);
+        }
+
+        /* Sidebar */
+        .sidebar {
+          margin-top: 2rem;
+        }
+
+        /* Related Articles */
+        .articles-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .article-card {
+          margin-bottom: 1rem;
+        }
+
+        /* Footer */
+        .footer-content {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+          text-align: center;
+        }
+
+        .social-links {
+          justify-content: center;
+        }
+
+        .footer-section ul {
+          text-align: center;
+        }
+      }
+
+      /* Small Mobile Styles (< 480px) */
+      @media (max-width: 480px) {
+        .container {
+          padding: 0 15px;
+        }
+
+        .hero {
+          height: 250px;
+        }
+
+        .hero h1 {
+          font-size: 1.2rem;
+        }
+
+        .article-card img {
+          height: 160px;
+        }
+
+        .sidebar-widget h3 {
+          font-size: 16px;
+        }
+
+        .tag {
+          font-size: 11px;
+          padding: 0.2rem 0.6rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="navbar">
+      <div class="container">
+        <div class="logo">
+          <img
+            src="https://bis-sby.telkomuniversity.ac.id/wp-content/uploads/2024/04/LOGO-LIGHT-UPPER1.png"
+            alt="Logo Sistem Informasi"
+          />
+        </div>
+        <div class="nav-links">
+          <a href="#">Tentang Kami</a>
+          <a href="#">Akademik</a>
+          <a href="#">Kehidupan Kampus</a>
+          <a href="#">Dosen & Staf</a>
+        </div>
+        <button class="daftar-btn">Daftar Sekarang</button>
+      </div>
+    </nav>
+
+    <div class="hero">
+      <div class="container">
+        <h1>
+          Pentingnya Integritas sebagai Fondasi Karakter Mahasiswa Sistem
+          Informasi
+        </h1>
+        <div class="article-meta">2 JUN 2024 / ARTIKEL</div>
+      </div>
+    </div>
+
+    <main class="main-content">
+      <div class="container">
+        <div class="content-wrapper">
+          <article class="article-content">
+            <img
+              src="https://bis-sby.telkomuniversity.ac.id/wp-content/uploads/2024/06/Teks-paragraf-Anda-scaled-e1717320174203-2048x1208.jpg"
+              alt="Featured Image"
+              class="article-image"
+            />
+            <div class="article-text">
+              <p>
+                Di era modern ini, kejujuran dan konsistensi dengan tindakan dan
+                ucapan adalah sesuatu yang penting. Salah satu untuk mendapatkan
+                sifat itu adalah dengan menerapkan prinsip integritas.
+                Integritas adalah mutu, sifat, atau keadaan yang menunjukkan
+                kesatuan yang utuh sehingga memiliki potensi dan kemampuan yang
+                memancarkan kewibawaan atau kejujuran. Jadi, semua perbuatan dan
+                perkataan yang dilakukan seseorang akan mencerminkan integritas
+                orang tersebut. Oleh karena itu, kita perlu memiliki sebuah
+                prinsip integritas agar mendapat kepercayaan orang lain,
+                membangun reputasi, dan juga membangun karakter positif.
+                Integritas adalah prinsip yang perlu dimiliki oleh semua orang,
+                bahkan mahasiswa..
+              </p>
+              <br />
+              <p>
+                Seperti yang disinggung oleh Rektor Telkom University, Prof. Dr.
+                Adiwijaya pada EJLS bahwa seluruh mahasiswa perlu memiliki
+                integritas. Terutama mahasiswa Telkom University. Meskipun
+                Telkom University mempunyai banyak kampus yaitu Bandung, Jakarta
+                dan Surabaya, tetapi semuanya harus memiliki integritas yang
+                sama. Hal ini sangat penting karena integritas tidak hanya
+                memengaruhi reputasi individu, tetapi juga berperan penting
+                dalam kualitas pendidikan dan profiesionalisme di masa depan.
+                Mahasiswa bisa menerapkan integritas dengan mengerjakan tugas
+                dengan orisinal dan jujur, sehingga kompentensi yang mereka
+                dapatkan adalah hasil dari usaha dan kemampuan sendiri. Dalam
+                rangka memperkuat prinsip ini, Program Studi Sistem Informasi
+                mengadakan kuliah tamu yang membahas tentang pentingnya
+                integritas.
+              </p>
+              <br />
+              <p>
+                Didalam kulliah tamu tersebut, dijelaskan bahwa integritas yang
+                sangat penting ini dipengaruhi mempunyai 2 faktor. Faktor yang
+                pertama adalah faktor internal. Faktor internal dalam integritas
+                ini merupakan hal yang berasal dari dalam diri individu,
+                misalnya nilai profesionalitas dan norma seseorang. Faktor
+                internal ini menekankan pentingnya dedikasi terhadap etika.
+                Faktor internal juga seringkali didorang oleh keyakinan agama
+                dan prinsip moral yang kuat. Tetapi, integritas yang bergantung
+                hanya pada faktor internal saja belum cukup. Selain faktor
+                internal, terdapat juga faktor eksternal yang juga berperan
+                penting dalam mendukung integritas suatu individu.
+              </p>
+              <br />
+              <p>
+                Faktor eksternal juga memiliki peran penting untuk mendukung
+                integritas individu. Dalam perkuliahan, faktor eksternal bisa
+                meliputi sistem pengawasan dan peraturan yang diterapkan baik
+                untuk mahasiswa maupun dosen. Misalnya, pada Telkom University
+                Surabaya yang dilengkapi dengan CCTV yang bisa membantu
+                mendeteksi penyalahgunaan fasilitas kampus. Tanpa adanya hukuman
+                atau sanksi, mahasiswa diharapkan untuk mengembangkan integritas
+                yang kuat di dalam diri mereka sendiri.
+              </p>
+              <br />
+              <p>
+                Pada kuliah tamu, juga diberikan contoh nyata pentingnya faktor
+                eksternal integritas. Contoh nyata tersebut terjadi di
+                Univeristy Teknologi Mara, Malaysia. Di sana, pernah terjadi
+                kejadian dosen menolak suap dari mahasiswa yang melanggar
+                aturan. Mahasiswa ini diberi sanksi harus mengulang semester
+                depan. Namun, mahasiswa ini malah ingin melakukan suap kepada
+                dosen. Meskipun mahasiswa itu memiliki relasi dengan orang
+                penting, dosen tersebut tetap berpegang teguh pada integritasnya
+                karena adanya peraturan dan pengawasan yang ketat. Hal ini
+                menunjukkan bahwa faktor internal seperti peraturan dan
+                pengawasan bisa memperkuat integritas seseorang.
+              </p>
+              <br />
+              <p>
+                Seperti yang dibahas pada kuliah tamu oleh Ainatul Fathiyah
+                Abdul Rahim, integritas adalah prinsip yang harus dimiliki oleh
+                mahasiswa Sistem Infomrasi untuk memastikan kualiatas pendidikan
+                dan profesionalisme yang tinggi. Webinar kuliah tamu
+                internasional tersebut menekankan pentingnya integritas bagi
+                mahasiswa dan bagaimana faktor internal dan eksternal seperti
+                peraturan bisa membantu membangun kepercayaan dan reputasi untuk
+                masa depan.
+              </p>
+              <br />
+              <p>
+                Ternyata penting sekali ya, integritas untuk mahasiswa. Kalian
+                juga bisa mendapatkan ilmu menarik lainnya dengan mengikuti
+                instagram Prodi Sistem Informasi di
+                <a
+                  href="https://www.instagram.com/is.telkomsurabaya?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
+                  >sini</a
+                >. Selain itu, kalian juga bisa mengunjungi websitenya untuk
+                mendapatkan informasi lengkapnya di
+                <a href="https://bis-sby.telkomuniversity.ac.id/">sini</a>.
+              </p>
+            </div>
+
+            <br />
+            <br />
+            <h5>Jumlah Pengunjung : 1.037</h5>
+
+            <div class="tags">
+              <a href="#" class="tag"># Integritas</a>
+              <a href="#" class="tag"># Kuliah Tamu</a>
+              <a href="#" class="tag"># Mahasiswa Sistem Informasi</a>
+            </div>
+
+            <div class="social-share">
+              <a href="#" class="social-share-btn">Facebook</a>
+              <a href="#" class="social-share-btn">Twitter</a>
+              <a href="#" class="social-share-btn">LinkedIn</a>
+              <a href="#" class="social-share-btn">WhatsApp</a>
+            </div>
+          </article>
+
+          <aside class="sidebar">
+            <div class="sidebar-widget">
+              <h3>Cari Artikel</h3>
+              <input type="text" class="search-box" placeholder="Search..." />
+            </div>
+
+            <div class="sidebar-widget">
+              <h3>Kategori Artikel</h3>
+              <ul class="category-list">
+                <li>Artikel (12)</li>
+                <li>Berita (44)</li>
+                <li>Kompetisi (9)</li>
+                <li>Penelitian (4)</li>
+                <li>Pengabdian (8)</li>
+                <li>Pengumuman (13)</li>
+              </ul>
+            </div>
+
+            <div class="sidebar-widget">
+              <h3>Artikel Terpopuler</h3>
+              <ul class="category-list">
+                <li>Pembukaan Pendaftaran ARKATAMA MSIB Batch 7</li>
+                <li>
+                  Pengabdian kepada MasArtikel Teryarakat: Pengembangan Aplikasi
+                  E-PSKS dan Integrasi dengan Server Kominfo
+                </li>
+                <li>
+                  Alumni Sistem Informasi ITTelkom Surabaya Tembus Jurnal Sinta
+                  2
+                </li>
+                <li>Prodi Sistem Informasi mendapatkan Akreditasi BAIK</li>
+                <li>
+                  Aksi Dosen Sistem Informasi ITTS di SMA Negeri 1 Surabaya
+                </li>
+              </ul>
+            </div>
+
+            <div class="sidebar-widget">
+              <h3>Artikel Terbaru</h3>
+              <ul class="category-list">
+                <li>
+                  Perbedaan Sistem Informasi dan Informatika, Memahami Dua
+                  Cabang Ilmu Teknologi dalam Pengembangan dan Implementasinya.
+                </li>
+                <li>
+                  JavaScript, Keunggulan Bahasa Pemrograman Yang Masih Ramai
+                  Hingga Saat Ini
+                </li>
+                <li>
+                  Webinar : Mengungkap Modus Penipuan Digital (Cerita Korban
+                  Part 1)
+                </li>
+                <li>
+                  Open Recruitment Asisten Laboratorium & Asisten Praktikum
+                  Prodi SI
+                </li>
+                <li>
+                  Explainable AI: Pengertian, Cara Kerja, Pentingnya, dan
+                  Penerapannya
+                </li>
+              </ul>
+            </div>
+
+            <div class="sidebar-widget tags-widget">
+              <h3>Tags</h3>
+              <div class="tags-cloud">
+                <a href="#" class="tag-size-2">2024</a>
+                <a href="#" class="tag-size-2">Business</a>
+                <a href="#" class="tag-size-2">Carnva</a>
+                <a href="#" class="tag-size-2">cumlaude</a>
+                <a href="#" class="tag-size-2">East Java</a>
+                <a href="#" class="tag-size-2">Student</a>
+                <a href="#" class="tag-size-2">Leader Summit</a>
+                <a href="#" class="tag-size-2">edugate</a>
+                <a href="#" class="tag-size-2">edugate</a>
+                <a href="#" class="tag-size-2">Founder</a>
+                <a href="#" class="tag-size-2">functional consultant</a>
+                <a href="#" class="tag-size-2">guest lecture</a>
+                <a href="#" class="tag-size-2">informatika</a>
+                <a href="#" class="tag-size-2">inkubator</a>
+                <a href="#" class="tag-size-2">Startup</a>
+                <a href="#" class="tag-size-2">innovillage 2023</a>
+                <a href="#" class="tag-size-2">Integritas</a>
+                <a href="#" class="tag-size-4">ITTS</a>
+                <a href="#" class="tag-size-2">JavaScript</a>
+                <a href="#" class="tag-size-2">Jurnal</a>
+                <a href="#" class="tag-size-2">Kelebihan</a>
+                <a href="#" class="tag-size-2">Keunggulan</a>
+                <a href="#" class="tag-size-4">Kuliah Tamu</a>
+                <a href="#" class="tag-size-2">lowongan</a>
+                <a href="#" class="tag-size-4">mahasiswa</a>
+                <a href="#" class="tag-size-3">Mahasiswa Sistem Informasi</a>
+                <a href="#" class="tag-size-3">Penelitian</a>
+                <a href="#" class="tag-size-2">penghargaan</a>
+                <a href="#" class="tag-size-3">Pengmas</a>
+                <a href="#" class="tag-size-2">Pengusaha</a>
+                <a href="#" class="tag-size-2">perbedaan</a>
+                <a href="#" class="tag-size-3"
+                  >sistem informasi dan informatika</a
+                >
+                <a href="#" class="tag-size-2">prestasi</a>
+                <a href="#" class="tag-size-2">Prestasi Mahasiswa</a>
+                <a href="#" class="tag-size-2">REKTOR PERTAMA</a>
+                <a href="#" class="tag-size-2">Relawan</a>
+                <a href="#" class="tag-size-2">TIK</a>
+                <a href="#" class="tag-size-2">SAP</a>
+                <a href="#" class="tag-size-5">Sistem Informasi</a>
+                <a href="#" class="tag-size-2">SISTER</a>
+                <a href="#" class="tag-size-2">Startup</a>
+                <a href="#" class="tag-size-2">Digital</a>
+                <a href="#" class="tag-size-2">Studi</a>
+                <a href="#" class="tag-size-2">Bandung</a>
+                <a href="#" class="tag-size-2">Surabaya</a>
+                <a href="#" class="tag-size-2">teknik informatika</a>
+                <a href="#" class="tag-size-2">Telkom</a>
+                <a href="#" class="tag-size-4">Telkom University Surabaya</a>
+                <a href="#" class="tag-size-2">University</a>
+                <a href="#" class="tag-size-2">Webinar</a>
+                <a href="#" class="tag-size-2">White Swindler</a>
+                <a href="#" class="tag-size-2">wisuda</a>
+              </div>
+            </div>
+          </aside>
+        </div>
+
+        <section class="related-articles">
+          <h2>Artikel Terkait</h2>
+          <div class="articles-grid">
+            <div class="article-card">
+              <img
+                src="https://bis-sby.telkomuniversity.ac.id/wp-content/uploads/2024/10/pexels-fauxels-3183150-1-300x200.jpg"
+                alt="Article 1"
+              />
+              <div class="article-card-content">
+                <h3>Perbedaan Sistem Informasi dan Informatika</h3>
+                <div class="article-date">October 6, 2024</div>
+              </div>
+            </div>
+            <div class="article-card">
+              <img
+                src="https://bis-sby.telkomuniversity.ac.id/wp-content/uploads/2024/10/pexels-fauxels-3183150-1-300x200.jpg"
+                alt="Article 1"
+              />
+              <div class="article-card-content">
+                <h3>Perbedaan Sistem Informasi dan Informatika</h3>
+                <div class="article-date">October 6, 2024</div>
+              </div>
+            </div>
+            <div class="article-card">
+              <img
+                src="https://bis-sby.telkomuniversity.ac.id/wp-content/uploads/2024/10/pexels-fauxels-3183150-1-300x200.jpg"
+                alt="Article 1"
+              />
+              <div class="article-card-content">
+                <h3>Perbedaan Sistem Informasi dan Informatika</h3>
+                <div class="article-date">October 6, 2024</div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-section">
+            <img
+              src="https://bis-sby.telkomuniversity.ac.id/wp-content/uploads/2024/03/LogoGabunganFooter-300x39.png"
+              alt="Footer Logo"
+            />
+            <p>
+              Program Studi Sistem Informasi sudah ada sejak berdirinya
+              Universitas Telkom Surabaya...
+            </p>
+          </div>
+          <div class="footer-section">
+            <h3>Tautan Bermanfaat</h3>
+            <ul>
+              <li><a href="#">Telkom Indonesia</a></li>
+              <li><a href="#">Yayasan Pendidikan Telkom</a></li>
+              <li><a href="#">Universitas Telkom Surabaya</a></li>
+              <li><a href="#">Fakultas Rekaya Industri (FRI)</a></li>
+            </ul>
+          </div>
+          <div class="footer-section">
+            <h3>Info Kontak</h3>
+            <p>Telepon: +62 31 8280800</p>
+            <p>Email: is@ttelkom-sby.ac.id</p>
+            <div class="social-links">
+              <a href="#"><i class="fab fa-instagram"></i></a>
+              <a href="#"><i class="fab fa-facebook"></i></a>
+              <a href="#"><i class="fab fa-twitter"></i></a>
+              <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="copyright">
+          <p>Copyright © 2024 Information Systems Telkom University Surabaya</p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Sticky Navbar
+      window.onscroll = function () {
+        if (window.scrollY > 50) {
+          document.querySelector(".navbar").style.background =
+            "rgba(75, 0, 130, 0.95)";
+        } else {
+          document.querySelector(".navbar").style.background =
+            "var(--primary-color)";
+        }
+      };
+
+      // Search Functionality
+      document
+        .querySelector(".search-box")
+        .addEventListener("input", function (e) {
+          const searchTerm = e.target.value.toLowerCase();
+          // Implement search logic here
+        });
+
+      // Mobile Menu Toggle
+      const mobileMenuBtn = document.createElement("button");
+      mobileMenuBtn.className = "mobile-menu-btn";
+      mobileMenuBtn.innerHTML = "☰";
+
+      const navbar = document.querySelector(".navbar .container");
+      navbar.insertBefore(mobileMenuBtn, navbar.firstChild);
+
+      mobileMenuBtn.addEventListener("click", function () {
+        const navLinks = document.querySelector(".nav-links");
+        navLinks.classList.toggle("active");
+        this.innerHTML = navLinks.classList.contains("active") ? "✕" : "☰";
+      });
+
+      // Close mobile menu when clicking outside
+      document.addEventListener("click", function (e) {
+        const navLinks = document.querySelector(".nav-links");
+        const mobileBtn = document.querySelector(".mobile-menu-btn");
+
+        if (!navLinks.contains(e.target) && !mobileBtn.contains(e.target)) {
+          navLinks.classList.remove("active");
+          mobileBtn.innerHTML = "☰";
+        }
+      });
+
+      // Handle window resize
+      window.addEventListener("resize", function () {
+        const navLinks = document.querySelector(".nav-links");
+        const mobileBtn = document.querySelector(".mobile-menu-btn");
+
+        if (window.innerWidth > 767) {
+          navLinks.classList.remove("active");
+          mobileBtn.innerHTML = "☰";
+        }
+      });
+
+      // Smooth scrolling for links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          document.querySelector(this.getAttribute("href")).scrollIntoView({
+            behavior: "smooth",
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
